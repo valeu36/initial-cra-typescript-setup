@@ -9,7 +9,8 @@
     "plugin:jest/recommended",
     "plugin:promise/recommended",
     "plugin:unicorn/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -56,7 +57,11 @@
     "unicorn/filename-case": "off",
     // It's not accurate in the monorepo style
     "import/no-extraneous-dependencies": "off",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "react/function-component-definition": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/no-unescaped-entities": "warn"
   },
   "overrides": [
     {
@@ -65,6 +70,18 @@
         // Allow CJS until ESM support improves
         "@typescript-eslint/no-var-requires": "off",
         "unicorn/prefer-module": "off"
+      }
+    },
+    {
+      // or whatever matches stories specified in .storybook/main.js
+      "files": [
+        "*.stories.@(ts|tsx|js|jsx|mjs|cjs)"
+      ],
+      "rules": {
+        // example of overriding a rule
+        "storybook/hierarchy-separator": "error",
+        // example of disabling a rule
+        "storybook/default-exports": "off"
       }
     }
   ]
